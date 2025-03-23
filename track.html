@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Order - Neat Drops</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="nav-brand">NEAT DROPS.</a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="about.html" class="nav-link">About Us</a>
+                    <a href="track.html" class="nav-link active">Track Order</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main">
+        <div class="container">
+            <div class="track-form">
+                <!-- Tracking Form -->
+                <div class="text-center mb-8 fade-in">
+                    <h1 class="hero-title mb-4">Track Your Delivery</h1>
+                    <p class="hero-text">Enter your tracking number to get real-time updates on your delivery.</p>
+                </div>
+
+                <div class="service-card slide-in-left" style="animation-delay: 0.2s;">
+                    <div class="flex gap-4 mb-8">
+                        <input type="text" placeholder="Enter tracking number" class="track-input" id="trackingInput">
+                        <button class="btn btn-primary" onclick="trackOrder()">Track</button>
+                    </div>
+                    
+                    <!-- Sample Tracking Status -->
+                    <div class="track-status" id="trackingStatus">
+                        <div class="status-item">
+                            <div class="status-icon completed">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h3 class="status-title">Order Confirmed</h3>
+                                <p class="status-text">Your order has been received and confirmed</p>
+                                <p class="status-time">Today, 10:30 AM</p>
+                            </div>
+                        </div>
+
+                        <div class="status-item">
+                            <div class="status-icon completed">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h3 class="status-title">Rider Assigned</h3>
+                                <p class="status-text">Alex has been assigned to your delivery</p>
+                                <p class="status-time">Today, 10:35 AM</p>
+                            </div>
+                        </div>
+
+                        <div class="status-item">
+                            <div class="status-icon current">
+                                <i class="fas fa-bicycle"></i>
+                            </div>
+                            <div>
+                                <h3 class="status-title">In Transit</h3>
+                                <p class="status-text">Your package is on its way</p>
+                                <p class="status-time">Estimated delivery: 15 minutes</p>
+                            </div>
+                        </div>
+
+                        <div class="status-item">
+                            <div class="status-icon pending">
+                                <i class="fas fa-flag-checkered"></i>
+                            </div>
+                            <div>
+                                <h3 class="status-title">Delivered</h3>
+                                <p class="status-text">Pending delivery confirmation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="grid md:grid-cols-2 gap-4 mt-8 slide-in-right" style="animation-delay: 0.4s;">
+                    <div class="quick-link service-card" onclick="showDeliveryHistory()">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-history text-green-500"></i>
+                            </div>
+                            <span class="font-bold">Delivery History</span>
+                        </div>
+                    </div>
+                    <div class="quick-link service-card" onclick="showSupport()">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-headset text-green-500"></i>
+                            </div>
+                            <span class="font-bold">Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content service-card">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="hero-title text-xl" id="modalTitle"></h2>
+                <i class="fas fa-times text-gray-400 cursor-pointer" onclick="closeModal()"></i>
+            </div>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        function trackOrder() {
+            const trackingNumber = document.getElementById('trackingInput').value;
+            if (!trackingNumber) {
+                alert('Please enter a tracking number');
+                return;
+            }
+            
+            // Simulate tracking update
+            const status = document.getElementById('trackingStatus');
+            status.style.opacity = '0';
+            setTimeout(() => {
+                status.style.opacity = '1';
+            }, 500);
+        }
+
+        function showDeliveryHistory() {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalTitle.textContent = 'Delivery History';
+            modalContent.innerHTML = `
+                <div class="space-y-4">
+                    <div class="service-card">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-bold">Order #12345</h3>
+                                <p class="text-gray-400">Delivered on March 20, 2024</p>
+                            </div>
+                            <i class="fas fa-check text-green-500"></i>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-bold">Order #12344</h3>
+                                <p class="text-gray-400">Delivered on March 18, 2024</p>
+                            </div>
+                            <i class="fas fa-check text-green-500"></i>
+                        </div>
+                    </div>
+                </div>
+            `;
+            modal.style.display = 'flex';
+        }
+
+        function showSupport() {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalTitle.textContent = 'Support';
+            modalContent.innerHTML = `
+                <div class="space-y-4">
+                    <p class="text-gray-400">How can we help you?</p>
+                    <div class="service-card cursor-pointer" onclick="alert('Connecting to support chat...')">
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-comments text-green-500"></i>
+                            <span>Live Chat</span>
+                        </div>
+                    </div>
+                    <div class="service-card cursor-pointer" onclick="window.location.href='contact.html'">
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-envelope text-green-500"></i>
+                            <span>Send Message</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
