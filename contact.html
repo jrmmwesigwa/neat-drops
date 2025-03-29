@@ -57,7 +57,7 @@
           <div class="contact-grid">
             <div class="contact-form-container">
               <h2>Send Us a Message</h2>
-              <form id="contactForm" class="contact-form">
+              <form id="contactForm" class="contact-form" >
                 <div class="form-grid">
                   <div class="form-group">
                     <label for="name">Your Name *</label>
@@ -85,7 +85,6 @@
                     <option value="Express Delivery">Express Delivery</option>
                     <option value="Scheduled Deliveries">Scheduled Deliveries</option>
                     <option value="Bulk Shipping">Bulk Shipping</option>
-                    <option value="International Shipping">International Shipping</option>
                     <option value="Specialized Handling">Specialized Handling</option>
                     <option value="Last Mile Delivery">Last Mile Delivery</option>
                   </select>
@@ -94,7 +93,18 @@
                   <label for="message">Your Message *</label>
                   <textarea id="message" name="message" rows="5" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary full-width">Send Message</button>
+                <div class="form-status">
+                  <div class="loading-spinner" id="formLoading" style="display: none;">
+                    Sending... <span class="spinner"></span>
+                  </div>
+                  <div class="success-message" id="formSuccess" style="display: none;">
+                    Message sent successfully!
+                  </div>
+                  <div class="error-message" id="formError" style="display: none;">
+                    Error sending message. Please try again.
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary full-width" id="submitButton">Send Message</button>
               </form>
             </div>
             
