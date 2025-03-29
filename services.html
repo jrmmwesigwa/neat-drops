@@ -1,76 +1,225 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - Neat Drops</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <nav class="nav">
-        <div class="nav-container">
-            <div class="flex justify-between items-center">
-                <a href="index.html" class="nav-brand">NEAT DROPS.</a>
-                <div class="nav-links">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="services.html" class="nav-link active">Services</a>
-                    <a href="about.html" class="nav-link">About Us</a>
-                    <!--<a href="track.html" class="nav-link">Track Order</a>-->
-                    <a href="contact.html" class="nav-link">Contact</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <main class="main">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Services | NeatDrops Logistics</title>
+    <meta name="description" content="Comprehensive logistics solutions designed to meet your business needs. From urgent deliveries to specialized handling, we've got you covered." />
+    <meta name="author" content="NeatDrops" />
+    
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
         <div class="container">
-            <h1 class="hero-title mb-8 fade-in">Our Services</h1>
-            
-            <div class="services">
-                <!-- Express Delivery -->
-                <div class="service-card slide-in-left" style="animation-delay: 0.2s;">
-                    <i class="fas fa-bolt service-icon"></i>
-                    <h3 class="service-title">Express Delivery</h3>
-                    <p class="service-text mb-4">Same-day delivery for urgent packages within city limits.</p>
-                    <ul class="service-text">
-                        <li class="mb-2"><i class="fas fa-check text-green-500 mr-2"></i>30-minute delivery</li>
-                        <li class="mb-2"><i class="fas fa-check text-green-500 mr-2"></i>Real-time tracking</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i>Priority handling</li>
-                    </ul>
-                </div>
-
-                <!-- Standard Delivery -->
-                <div class="service-card slide-in-left" style="animation-delay: 0.4s;">
-                    <i class="fas fa-bicycle service-icon"></i>
-                    <h3 class="service-title">Standard Delivery</h3>
-                    <p class="service-text mb-4">Reliable same-day delivery for regular packages.</p>
-                    <ul class="service-text">
-                        <li class="mb-2"><i class="fas fa-check text-green-500 mr-2"></i>Same-day delivery</li>
-                        <li class="mb-2"><i class="fas fa-check text-green-500 mr-2"></i>Order tracking</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i>Eco-friendly transport</li>
-                    </ul>
-                </div>
-
-                <!-- Bulk Delivery -->
-                <div class="service-card slide-in-left" style="animation-delay: 0.6s;">
-                    <i class="fas fa-boxes service-icon"></i>
-                    <h3 class="service-title">Bulk Delivery</h3>
-                    <p class="service-text mb-4">Multiple package delivery for businesses.</p>
-                    <ul class="service-text">
-                        <li class="mb-2"><i class="fas fa-check text-green-500 mr-2"></i>Volume pricing</li>
-                        <li class="mb-2"><i class="fas fa-check text-green-500 mr-2"></i>Route optimization</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i>Business dashboard</li>
-                    </ul>
-                </div>
+          <a href="index.html" class="logo">
+            <div class="logo-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package">
+                <path d="m7.5 4.27 9 5.15"></path>
+                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path>
+                <path d="m3.3 7 8.7 5 8.7-5"></path>
+                <path d="M12 22V12"></path>
+              </svg>
             </div>
-
-            <div class="text-center mt-16 fade-in" style="animation-delay: 0.8s;">
-                <h2 class="hero-title mb-4">Ready to get started?</h2>
-                <a href="contact.html" class="btn btn-primary">Schedule a Delivery</a>
-            </div>
+            <span>NeatDrops</span>
+          </a>
+          
+          <div class="menu-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu-icon">
+              <line x1="4" x2="20" y1="12" y2="12"></line>
+              <line x1="4" x2="20" y1="6" y2="6"></line>
+              <line x1="4" x2="20" y1="18" y2="18"></line>
+            </svg>
+          </div>
+          
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
         </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-header">
+        <div class="container">
+          <h1>Our <span class="accent">Services</span></h1>
+          <p>Comprehensive logistics solutions designed to meet your business needs. From urgent
+            deliveries to specialized handling, we've got you covered.</p>
+        </div>
+      </section>
+
+      <section class="services-section">
+        <div class="container">
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package">
+                  <path d="m7.5 4.27 9 5.15"></path>
+                  <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path>
+                  <path d="m3.3 7 8.7 5 8.7-5"></path>
+                  <path d="M12 22V12"></path>
+                </svg>
+              </div>
+              <h3>Express Delivery</h3>
+              <p>Same-day delivery for urgent shipments. When time is critical, we deliver with precision and care,
+                ensuring your packages arrive exactly when needed.</p>
+              <h4>Key Features:</h4>
+              <ul class="feature-list">
+                <li>Same-day delivery</li>
+                <li>Real-time tracking</li>
+                <li>Priority handling</li>
+                <li>Delivery confirmation</li>
+              </ul>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <h3>Scheduled Deliveries</h3>
+              <p>Plan ahead with our reliable scheduled delivery service for predictable logistics. Set your
+                delivery timeline and let us handle the rest.</p>
+              <h4>Key Features:</h4>
+              <ul class="feature-list">
+                <li>Flexible scheduling</li>
+                <li>Cost-effective rates</li>
+                <li>Advance booking</li>
+                <li>Customizable delivery windows</li>
+              </ul>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-briefcase">
+                  <rect width="20" height="14" x="2" y="7" rx="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+              </div>
+              <h3>Bulk Shipping</h3>
+              <p>Cost-effective solutions for high-volume shipments with comprehensive tracking. Perfect
+                for businesses that need to move large quantities efficiently.</p>
+              <h4>Key Features:</h4>
+              <ul class="feature-list">
+                <li>Volume discounts</li>
+                <li>Warehouse integration</li>
+                <li>Multi-point delivery</li>
+                <li>Inventory management</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="services-section">
+        <div class="container">
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" x2="22" y1="12" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+              </div>
+              <h3>International Shipping</h3>
+              <p>Expand your reach globally with our reliable international shipping services. We navigate customs
+                and international regulations so you don't have to.</p>
+              <h4>Key Features:</h4>
+              <ul class="feature-list">
+                <li>Customs clearance</li>
+                <li>Global tracking</li>
+                <li>Documentation assistance</li>
+                <li>Multiple carrier options</li>
+              </ul>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-loader">
+                  <line x1="12" x2="12" y1="2" y2="6"></line>
+                  <line x1="12" x2="12" y1="18" y2="22"></line>
+                  <line x1="4.93" x2="7.76" y1="4.93" y2="7.76"></line>
+                  <line x1="16.24" x2="19.07" y1="16.24" y2="19.07"></line>
+                  <line x1="2" x2="6" y1="12" y2="12"></line>
+                  <line x1="18" x2="22" y1="12" y2="12"></line>
+                  <line x1="4.93" x2="7.76" y1="19.07" y2="16.24"></line>
+                  <line x1="16.24" x2="19.07" y1="7.76" y2="4.93"></line>
+                </svg>
+              </div>
+              <h3>Specialized Handling</h3>
+              <p>Special items require special care. Our specialized handling service ensures delicate, valuable, or
+                unusual items are transported with the utmost care.</p>
+              <h4>Key Features:</h4>
+              <ul class="feature-list">
+                <li>Temperature control</li>
+                <li>Fragile item expertise</li>
+                <li>High-value protection</li>
+                <li>Custom packaging</li>
+              </ul>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home">
+                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+              </div>
+              <h3>Last Mile Delivery</h3>
+              <p>The crucial final step in the delivery process. Our last mile service focuses on efficiency and
+                customer satisfaction for that final delivery experience.</p>
+              <h4>Key Features:</h4>
+              <ul class="feature-list">
+                <li>Timely delivery</li>
+                <li>Digital proof of delivery</li>
+                <li>Customer communication</li>
+                <li>Contactless options</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="custom-quote">
+        <div class="container">
+          <div class="quote-content">
+            <div>
+              <h3>Need Custom Solutions?</h3>
+              <p>Contact our team to discuss tailored logistics solutions for your specific business requirements.</p>
+            </div>
+            <a href="contact.html" class="btn btn-primary">Reach Us</a>
+          </div>
+        </div>
+      </section>
     </main>
-</body>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package">
+                <path d="m7.5 4.27 9 5.15"></path>
+                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path>
+                <path d="m3.3 7 8.7 5 8.7-5"></path>
+                <path d="M12 22V12"></path>
+              </svg>
+            </div>
+            <span>NeatDrops</span>
+          </a>
+          <div class="copyright">© 2023 NeatDrops Logistics. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
 </html>
