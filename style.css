@@ -1,4 +1,3 @@
-
 :root {
   --background: #121212;
   --foreground: #f8f9fa;
@@ -15,6 +14,51 @@
   --muted: #292929;
   --muted-foreground: #a6a7ab;
   --radius: 0.5rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to { 
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes menuItemSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Base styles */
@@ -56,6 +100,7 @@ a {
 .navbar {
   border-bottom: 1px solid var(--border);
   padding: 1rem 0;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .navbar .container {
@@ -92,12 +137,14 @@ a {
 }
 
 .nav-links a {
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
+  font-weight: bold;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
   color: var(--accent);
+  transform: translateY(-2px);
 }
 
 .menu-toggle {
@@ -107,33 +154,130 @@ a {
 
 /* Mobile Menu */
 @media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    z-index: 1001;
+    transition: transform 0.3s ease;
+  }
+
+  .menu-toggle:hover {
+    transform: scale(1.1);
+  }
+
+  .menu-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .menu-open .menu-toggle .menu-icon {
+    transform: rotate(90deg);
+  }
+
+  /* Backdrop overlay */
+  .menu-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Increased opacity for better contrast */
+    backdrop-filter: blur(5px); /* Increased blur for better effect */
+    z-index: 999;
+    animation: fadeIn 0.3s ease-out;
+  }
+
   .nav-links {
     display: none;
     position: fixed;
     top: 0;
     right: 0;
     height: 100vh;
-    width: 250px;
+    width: 280px;
     background-color: var(--card);
     flex-direction: column;
-    padding: 2rem;
+    padding: 4rem 2rem 2rem;
     z-index: 1000;
     transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    border-left: 2px solid var(--accent); /* Slightly thicker border */
   }
 
   .nav-links.active {
-    transform: translateX(0);
     display: flex;
+    transform: translateX(0);
+    animation: menuItemSlide 0.5s ease-out forwards; /* Ensure animation triggers */
   }
 
-  .menu-toggle {
-    display: block;
-    z-index: 1001;
+  .nav-links li {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s ease;
+    margin-bottom: 1rem; /* Added spacing between items */
   }
-  
+
+  .nav-links.active li {
+    opacity: 1;
+    transform: translateX(0);
+    animation: menuItemSlide 0.5s ease-out forwards; /* Apply animation */
+  }
+
+  /* Stagger animation for menu items */
+  .nav-links.active li:nth-child(1) { animation-delay: 0.1s; }
+  .nav-links.active li:nth-child(2) { animation-delay: 0.2s; }
+  .nav-links.active li:nth-child(3) { animation-delay: 0.3s; }
+  .nav-links.active li:nth-child(4) { animation-delay: 0.4s; }
+
+  .nav-links a {
+    font-size: 1.2rem;
+    padding: 0.75rem 1rem; /* Added padding for better touch area */
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: block; /* Ensure full width clickable area */
+    border-radius: var(--radius); /* Slight rounding for better look */
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus,
+  .nav-links a.active {
+    color: var(--accent);
+    transform: translateX(10px);
+    background: rgba(74, 222, 128, 0.1); /* Subtle background on hover */
+  }
+
+  .nav-links a:hover::after,
+  .nav-links a:focus::after,
+  .nav-links a.active::after {
+    transform: translateX(0);
+  }
+
   .menu-open body {
     overflow: hidden;
+  }
+
+  /* Style the close button (X icon) */
+  .menu-icon line {
+    stroke: var(--foreground);
+    transition: stroke 0.3s ease;
+  }
+
+  .menu-open .menu-icon line {
+    stroke: var(--accent); /* Change color when menu is open */
+    stroke-width: 2.5; /* Match the stroke width specified in JS */
   }
 }
 
@@ -141,11 +285,13 @@ a {
 .hero {
   padding: 5rem 0;
   text-align: center;
+  animation: fadeIn 0.8s ease-out;
 }
 
 .hero h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  animation: slideUp 0.6s ease-out;
 }
 
 @media (min-width: 768px) {
@@ -159,6 +305,7 @@ a {
   margin: 0 auto 2.5rem;
   color: var(--muted-foreground);
   font-size: 1.125rem;
+  animation: slideUp 0.6s ease-out 0.2s backwards;
 }
 
 .cta-buttons {
@@ -166,6 +313,7 @@ a {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+  animation: slideUp 0.6s ease-out 0.4s backwards;
 }
 
 /* Buttons */
@@ -175,7 +323,7 @@ a {
   border-radius: var(--radius);
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, transform 0.2s ease;
   border: none;
   text-align: center;
 }
@@ -187,6 +335,8 @@ a {
 
 .btn-primary:hover {
   background-color: rgba(74, 222, 128, 0.9);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(74, 222, 128, 0.3);
 }
 
 .btn-outline {
@@ -197,6 +347,8 @@ a {
 
 .btn-outline:hover {
   background-color: rgba(74, 222, 128, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(74, 222, 128, 0.3);
 }
 
 .full-width {
@@ -229,7 +381,13 @@ a {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, transform 0.3s ease;
+  animation: scaleIn 0.5s ease-out;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
 }
 
 .stat-number {
@@ -279,17 +437,24 @@ a {
   align-items: center;
   text-align: center;
   height: 100%;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, transform 0.3s ease;
+  animation: scaleIn 0.5s ease-out;
 }
 
 .service-card:hover {
+  transform: translateY(-5px) scale(1.02);
   border-color: var(--accent);
-  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(74, 222, 128, 0.2);
 }
 
 .service-icon {
   color: var(--accent);
   margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.1);
 }
 
 .service-card h3 {
@@ -320,7 +485,14 @@ a {
   align-items: center;
   margin-bottom: 0.5rem;
   font-size: 0.875rem;
+  animation: slideUp 0.5s ease-out;
+  animation-fill-mode: backwards;
 }
+
+.feature-list li:nth-child(1) { animation-delay: 0.1s; }
+.feature-list li:nth-child(2) { animation-delay: 0.2s; }
+.feature-list li:nth-child(3) { animation-delay: 0.3s; }
+.feature-list li:nth-child(4) { animation-delay: 0.4s; }
 
 .feature-list li::before {
   content: '';
@@ -340,6 +512,7 @@ a {
   max-width: 1000px;
   border: 1px solid rgba(74, 222, 128, 0.3);
   border-radius: var(--radius);
+  animation: fadeIn 0.8s ease-out;
 }
 
 .testimonial h2 {
@@ -356,6 +529,7 @@ a {
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  animation: slideUp 0.6s ease-out 0.2s backwards;
 }
 
 .testimonial-author {
@@ -375,6 +549,8 @@ a {
   font-weight: bold;
   color: var(--accent-foreground);
   margin-bottom: 0.5rem;
+  transition: transform 0.3s ease;
+  animation: float 3s ease-in-out infinite;
 }
 
 .author-name {
@@ -393,6 +569,7 @@ a {
   max-width: 1000px;
   border: 1px solid rgba(74, 222, 128, 0.3);
   border-radius: var(--radius);
+  animation: fadeIn 0.8s ease-out;
 }
 
 .cta-content {
@@ -424,17 +601,20 @@ a {
 .page-header {
   padding: 4rem 0 2rem;
   text-align: center;
+  animation: fadeIn 0.8s ease-out;
 }
 
 .page-header h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  animation: slideUp 0.6s ease-out;
 }
 
 .page-header p {
   max-width: 600px;
   margin: 0 auto;
   color: var(--muted-foreground);
+  animation: slideUp 0.6s ease-out 0.2s backwards;
 }
 
 /* About Page */
@@ -447,6 +627,7 @@ a {
   border-radius: var(--radius);
   padding: 2rem;
   margin-bottom: 4rem;
+  animation: fadeIn 0.8s ease-out;
 }
 
 .story-content h2 {
@@ -461,6 +642,7 @@ a {
 
 .story-text p {
   margin-bottom: 1rem;
+  animation: slideUp 0.6s ease-out 0.2s backwards;
 }
 
 /* Values Section */
@@ -493,12 +675,25 @@ a {
   align-items: center;
   text-align: center;
   height: 100%;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, transform 0.3s ease;
+  animation: scaleIn 0.5s ease-out;
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  cursor: pointer;
 }
 
 .value-icon {
   color: var(--accent);
   margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.value-card:hover .value-icon {
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .value-card h3 {
@@ -540,7 +735,14 @@ a {
   align-items: center;
   text-align: center;
   height: 100%;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, transform 0.3s ease;
+  animation: scaleIn 0.5s ease-out;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  cursor: pointer;
 }
 
 .team-avatar {
@@ -555,6 +757,11 @@ a {
   font-weight: bold;
   color: var(--accent-foreground);
   margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover .team-avatar {
+  transform: scale(1.1);
 }
 
 .team-card h3 {
@@ -591,6 +798,7 @@ a {
   border: 1px solid rgba(74, 222, 128, 0.3);
   border-radius: var(--radius);
   padding: 1.5rem;
+  animation: fadeIn 0.8s ease-out;
 }
 
 .contact-form-container h2 {
@@ -620,6 +828,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  animation: slideUp 0.6s ease-out 0.2s backwards;
 }
 
 .form-group label {
@@ -635,6 +844,7 @@ a {
   padding: 0.75rem;
   color: var(--foreground);
   width: 100%;
+  transition: all 0.3s ease;
 }
 
 .form-group input:focus,
@@ -642,6 +852,7 @@ a {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--accent);
+  box-shadow: 0 0 5px rgba(74, 222, 128, 0.5);
 }
 
 .location-info {
@@ -659,6 +870,7 @@ a {
   padding: 1.5rem;
   background-color: var(--card);
   margin-bottom: 1.5rem;
+  animation: scaleIn 0.5s ease-out;
 }
 
 .location-card h3 {
@@ -673,6 +885,7 @@ a {
   gap: 0.75rem;
   margin-bottom: 1rem;
   font-size: 0.875rem;
+  animation: slideUp 0.6s ease-out 0.2s backwards;
 }
 
 .contact-detail svg {
@@ -700,12 +913,13 @@ a {
   align-items: center;
   justify-content: center;
   color: var(--accent);
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, transform 0.3s ease;
 }
 
 .social-icon:hover {
   background-color: var(--accent);
   color: var(--accent-foreground);
+  transform: rotate(360deg);
 }
 
 /* Custom Quote Section */
@@ -722,6 +936,7 @@ a {
   align-items: center;
   text-align: center;
   gap: 1.5rem;
+  animation: fadeIn 0.8s ease-out;
 }
 
 @media (min-width: 768px) {
@@ -755,6 +970,7 @@ footer {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
+  animation: fadeIn 0.8s ease-out;
 }
 
 .copyright {
@@ -773,13 +989,14 @@ footer {
   padding: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transform: translateY(150%);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease-in-out;
   z-index: 1000;
   max-width: 300px;
 }
 
 .toast.show {
   transform: translateY(0);
+  animation: slideUp 0.5s ease-out;
 }
 
 .toast-title {

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Mobile menu toggle (unchanged)
+  // Mobile menu toggle
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
   
@@ -11,14 +11,14 @@ document.addEventListener('DOMContentLoaded', function() {
       const menuIcon = this.querySelector('svg');
       if (navLinks.classList.contains('active')) {
         menuIcon.innerHTML = `
-          <line x1="18" x2="6" y1="6" y2="18"></line>
-          <line x1="6" x2="18" y1="6" y2="18"></line>
+          <line x1="18" x2="6" y1="6" y2="18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="6" x2="18" y1="6" y2="18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
         `;
       } else {
         menuIcon.innerHTML = `
-          <line x1="4" x2="20" y1="12" y2="12"></line>
-          <line x1="4" x2="20" y1="6" y2="6"></line>
-          <line x1="4" x2="20" y1="18" y2="18"></line>
+          <line x1="4" x2="20" y1="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="4" x2="20" y1="6" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="4" x2="20" y1="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         `;
       }
     });
@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.remove('menu-open');
         const menuIcon = menuToggle.querySelector('svg');
         menuIcon.innerHTML = `
-          <line x1="4" x2="20" y1="12" y2="12"></line>
-          <line x1="4" x2="20" y1="6" y2="6"></line>
-          <line x1="4" x2="20" y1="18" y2="18"></line>
+          <line x1="4" x2="20" y1="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="4" x2="20" y1="6" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="4" x2="20" y1="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         `;
       });
     });
@@ -45,9 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.remove('menu-open');
         const menuIcon = menuToggle.querySelector('svg');
         menuIcon.innerHTML = `
-          <line x1="4" x2="20" y1="12" y2="12"></line>
-          <line x1="4" x2="20" y1="6" y2="6"></line>
-          <line x1="4" x2="20" y1="18" y2="18"></line>
+          <line x1="4" x2="20" y1="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="4" x2="20" y1="6" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="4" x2="20" y1="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         `;
       }
     });
@@ -100,7 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
         body: formData
       })
       .then(() => {
-        // Since data is reaching Google Forms, treat this as success
         console.log('Fetch completed (assumed success)');
         loading.style.display = 'none';
         success.style.display = 'block';
@@ -118,10 +117,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
       })
       .catch(err => {
-        // Only show error for critical failures (e.g., network offline)
         console.error('Critical fetch error:', err);
         if (navigator.onLine) {
-          // Assume success if online, despite timeout
           console.log('Assuming success despite timeout');
           loading.style.display = 'none';
           success.style.display = 'block';
@@ -138,7 +135,6 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.disabled = false;
           }, 5000);
         } else {
-          // True error (e.g., offline)
           loading.style.display = 'none';
           error.style.display = 'block';
           submitButton.disabled = false;
